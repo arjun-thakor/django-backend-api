@@ -16,6 +16,7 @@ class Post(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50, null=False, blank=False)
     slug = models.SlugField(null=False, unique=True)
+    category = models.ManyToManyField('Tag', related_name='category', blank=True)
     body = models.TextField()
     creator = models.ForeignKey(Author, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -39,3 +40,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.comment_text} by {self.comment_by}'
+
+
+class Tag(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=20)
+    description = models.TextField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
