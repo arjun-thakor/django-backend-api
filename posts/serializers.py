@@ -23,6 +23,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'comment_text', 'comment_by', 'comment_time', 'comment_update_time']
         # exclude = ('post',)
 
+
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
@@ -36,4 +37,4 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('pk', 'id', 'title', 'slug', 'category', 'creator', 'comments', 'created_on')
+        fields = ('pk', 'id', 'title', 'slug', 'category', 'body', 'creator', 'comments', 'created_on')

@@ -1,6 +1,7 @@
 import uuid
 from django.template.defaultfilters import slugify
 from django.db import models
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 
 
@@ -17,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
     slug = models.SlugField(null=False, unique=True)
     category = models.ManyToManyField('Tag', related_name='category', blank=True)
-    body = models.TextField()
+    body = RichTextField()
     creator = models.ForeignKey(Author, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
 
